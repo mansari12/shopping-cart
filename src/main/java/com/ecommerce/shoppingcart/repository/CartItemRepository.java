@@ -1,0 +1,15 @@
+/**
+ * 
+ */
+package com.ecommerce.shoppingcart.repository;
+
+import org.springframework.data.jpa.repository.JpaRepository;
+
+import com.ecommerce.shoppingcart.model.CartItem;
+
+/**
+ * 
+ */
+public interface CartItemRepository extends JpaRepository<CartItem, Long> {
+
+}

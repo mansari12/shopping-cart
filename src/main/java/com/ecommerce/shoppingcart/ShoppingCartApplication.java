@@ -1,4 +1,4 @@
-package com.ecommerce.shopping_cart;
+package com.ecommerce.shoppingcart;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
