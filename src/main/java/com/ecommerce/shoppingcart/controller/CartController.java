@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.shoppingcart.payload.request.CartRequest;
@@ -32,12 +33,14 @@ public class CartController {
 	@PostMapping("/createCart")
 	public CartResponse createCart(@RequestBody CartRequest cartRequest) {
 		return cartService.createCart(cartRequest);
+//		return cartService.createCart(cartRequest, null, null);
 		
 	}
 	
 	@PutMapping("/{cartId}")
-	public CartResponse updateCart(@PathVariable long id, @RequestBody CartRequest cartRequest) {
+	public CartResponse updateCart(@RequestParam long id, @RequestBody CartRequest cartRequest) {
 		return cartService.updateCart(id, cartRequest);
+//		return cartService.updateCart(id, cartRequest, null, null);
 		
 	}
 	
@@ -47,12 +50,12 @@ public class CartController {
 	}
 	
 	@DeleteMapping("/{cartId}")
-	public void deleteCart(@PathVariable long id) {
+	public void deleteCart(@RequestParam long id) {
 		cartService.deleteCart(id);
 	}
 	
 	@GetMapping("/{cartId}")
-	public CartResponse getCartById(@PathVariable long id) {
+	public CartResponse getCartById(@RequestParam long id) {
 		return cartService.getCartById(id);
 	}
 

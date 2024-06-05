@@ -1,6 +1,7 @@
 package com.ecommerce.shoppingcart.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -9,24 +10,28 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name="CART_ITEM")
+@SequenceGenerator(name="cartItem_id_seq", initialValue=41, allocationSize=100)
 public class CartItem {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cartItem_id_seq")
 	@Column(name="CART_ITEM_ID")
 	private long cartItemId;
+	
 	
 	@ManyToOne
 	@JoinColumn(name = "CART_ID")
 	private Cart cart;
 	
-	@ManyToOne
-	@JoinColumn(name = "PRODUCT_ID")
-	private Product product;
+//	@OneToMany
+//	@JoinColumn(name = "PRODUCT_ID")
+//	private List<Product> product;
 	
 	@Column(name = "QUANTITY")
 	private int quantity;
@@ -64,12 +69,12 @@ public class CartItem {
 	 * @param updatedBy
 	 * @param updatedDate
 	 */
-	public CartItem(long cartItemId, Cart cart, Product product, int quantity, double cartItemsTotalPrice,
+	public CartItem(long cartItemId, Cart cart, List<Product> product, int quantity, double cartItemsTotalPrice,
 			String createdBy, LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
 		super();
 		this.cartItemId = cartItemId;
 		this.cart = cart;
-		this.product = product;
+//		this.product = product;
 		this.quantity = quantity;
 		this.cartItemsTotalPrice = cartItemsTotalPrice;
 		this.createdBy = createdBy;
@@ -109,16 +114,16 @@ public class CartItem {
 	/**
 	 * @return the product
 	 */
-	public Product getProduct() {
-		return product;
-	}
-
-	/**
-	 * @param product the product to set
-	 */
-	public void setProduct(Product product) {
-		this.product = product;
-	}
+//	public List<Product> getProduct() {
+//		return product;
+//	}
+//
+//	/**
+//	 * @param product the product to set
+//	 */
+//	public void setProduct(List<Product> product) {
+//		this.product = product;
+//	}
 
 	/**
 	 * @return the quantity
@@ -206,7 +211,7 @@ public class CartItem {
 
 	@Override
 	public String toString() {
-		return "CartItem [cartItemId=" + cartItemId + ", cart=" + cart + ", product=" + product + ", quantity="
+		return "CartItem [cartItemId=" + cartItemId + ", cart=" + cart + ", product=" + ", quantity="
 				+ quantity + ", cartItemsTotalPrice=" + cartItemsTotalPrice + ", createdBy=" + createdBy
 				+ ", createdDate=" + createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + "]";
 	}

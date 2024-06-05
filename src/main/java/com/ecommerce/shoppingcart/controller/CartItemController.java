@@ -13,11 +13,11 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.shoppingcart.payload.request.CartItemRequest;
 import com.ecommerce.shoppingcart.payload.response.CartItemResponse;
-import com.ecommerce.shoppingcart.payload.response.RoleResponse;
 import com.ecommerce.shoppingcart.service.CartItemService;
 
 /**
@@ -37,7 +37,7 @@ public class CartItemController {
 	}
 	
 	@PutMapping("/{cartItemId}")
-	public CartItemResponse updateCartItem(@PathVariable long id, @RequestBody CartItemRequest cartItemRequest) {
+	public CartItemResponse updateCartItem(@RequestParam long id, @RequestBody CartItemRequest cartItemRequest) {
 		return cartItemService.updateCartItem(id, cartItemRequest);
 		
 	}
@@ -48,12 +48,12 @@ public class CartItemController {
 	}
 	
 	@DeleteMapping("/{cartItemId}")
-	public void deleteCartItem(@PathVariable long id) {
+	public void deleteCartItem(@RequestParam long id) {
 		cartItemService.deleteCartItem(id);
 	}
 	
 	@GetMapping("/{cartItemId}")
-	public CartItemResponse getCartItemById(@PathVariable long id) {
+	public CartItemResponse getCartItemById(@RequestParam long id) {
 		return cartItemService.getCartItemById(id);
 	}
 

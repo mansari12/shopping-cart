@@ -1,28 +1,36 @@
 package com.ecommerce.shoppingcart.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.EnumType;
 import jakarta.persistence.Enumerated;
+import jakarta.persistence.FetchType;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "CART")
+@SequenceGenerator(name="cart_id_seq", initialValue=31, allocationSize=100)
 public class Cart {
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="cart_id_seq")
 	@Column(name = "CART_ID")
 	private long cartId;
 	
-	@ManyToOne
+	@OneToMany(mappedBy = "cart")
+    private List<CartItem> cartItems;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
 	@JoinColumn(name = "CUSTOMER_ID")
 	private Customer customer;
 	
@@ -68,8 +76,11 @@ public class Cart {
 		super();
 	}
 
+	
+
 	/**
 	 * @param cartId
+	 * @param cartItems
 	 * @param customer
 	 * @param subTotal
 	 * @param discountAmount
@@ -82,11 +93,12 @@ public class Cart {
 	 * @param updatedBy
 	 * @param updatedDate
 	 */
-	public Cart(long cartId, Customer customer, double subTotal, double discountAmount, double taxAmount,
-			double shippingFee, double totalPrice, Status status, String createdBy, LocalDateTime createdDate,
-			String updatedBy, LocalDateTime updatedDate) {
+	public Cart(long cartId, List<CartItem> cartItems, Customer customer, double subTotal, double discountAmount,
+			double taxAmount, double shippingFee, double totalPrice, Status status, String createdBy,
+			LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
 		super();
 		this.cartId = cartId;
+		this.cartItems = cartItems;
 		this.customer = customer;
 		this.subTotal = subTotal;
 		this.discountAmount = discountAmount;
@@ -99,6 +111,8 @@ public class Cart {
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
 	}
+
+
 
 	/**
 	 * @return the cartId
@@ -268,8 +282,29 @@ public class Cart {
 		this.updatedDate = updatedDate;
 	}
 
-	
-			
-	
+	/**
+	 * @return the cartItems
+	 */
+	public List<CartItem> getCartItems() {
+		return cartItems;
+	}
+
+	/**
+	 * @param cartItems the cartItems to set
+	 */
+	public void setCartItems(List<CartItem> cartItems) {
+		this.cartItems = cartItems;
+	}
+
+
+
+	@Override
+	public String toString() {
+		return "Cart [cartId=" + cartId + ", cartItems=" + cartItems + ", customer=" + customer + ", subTotal="
+				+ subTotal + ", discountAmount=" + discountAmount + ", taxAmount=" + taxAmount + ", shippingFee="
+				+ shippingFee + ", totalPrice=" + totalPrice + ", status=" + status + ", createdBy=" + createdBy
+				+ ", createdDate=" + createdDate + ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + "]";
+	}
+		
 
 }

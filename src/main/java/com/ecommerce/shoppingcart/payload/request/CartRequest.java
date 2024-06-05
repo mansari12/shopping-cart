@@ -6,6 +6,7 @@ package com.ecommerce.shoppingcart.payload.request;
 import java.time.LocalDateTime;
 
 import com.ecommerce.shoppingcart.model.Cart.Status;
+import com.ecommerce.shoppingcart.repository.ProductRepository;
 
 /**
  * 
@@ -17,12 +18,16 @@ public class CartRequest {
 	private double discountAmount;
 	private double taxAmount;
 	private double shippingFee;
-	private double totalPrice;
+//	private double totalPrice;]
 	private Status status;
-	private String createdBy;
+//	private String createdBy;
 	private LocalDateTime createdDate;
-	private String updatedBy;
+//	private String updatedBy;
 	private LocalDateTime updatedDate;
+	
+//	private ProductRepository product;
+//	private CartItemRequest cartItemRequest;
+	
 	/**
 	 * @return the customerId
 	 */
@@ -86,15 +91,15 @@ public class CartRequest {
 	/**
 	 * @return the totalPrice
 	 */
-	public double getTotalPrice() {
-		return totalPrice;
-	}
-	/**
-	 * @param totalPrice the totalPrice to set
-	 */
-	public void setTotalPrice(double totalPrice) {
-		this.totalPrice = totalPrice;
-	}
+//	public double getTotalPrice() {
+//		return totalPrice;
+//	}
+//	/**
+//	 * @param totalPrice the totalPrice to set
+//	 */
+//	public void setTotalPrice(double totalPrice) {
+//		this.totalPrice = totalPrice;
+//	}
 	/**
 	 * @return the status
 	 */
@@ -110,15 +115,15 @@ public class CartRequest {
 	/**
 	 * @return the createdBy
 	 */
-	public String getCreatedBy() {
-		return createdBy;
-	}
-	/**
-	 * @param createdBy the createdBy to set
-	 */
-	public void setCreatedBy(String createdBy) {
-		this.createdBy = createdBy;
-	}
+//	public String getCreatedBy() {
+//		return createdBy;
+//	}
+//	/**
+//	 * @param createdBy the createdBy to set
+//	 */
+//	public void setCreatedBy(String createdBy) {
+//		this.createdBy = createdBy;
+//	}
 	/**
 	 * @return the createdDate
 	 */
@@ -133,16 +138,16 @@ public class CartRequest {
 	}
 	/**
 	 * @return the updatedBy
-	 */
-	public String getUpdatedBy() {
-		return updatedBy;
-	}
-	/**
-	 * @param updatedBy the updatedBy to set
-	 */
-	public void setUpdatedBy(String updatedBy) {
-		this.updatedBy = updatedBy;
-	}
+//	 */
+//	public String getUpdatedBy() {
+//		return updatedBy;
+//	}
+//	/**
+//	 * @param updatedBy the updatedBy to set
+//	 */
+//	public void setUpdatedBy(String updatedBy) {
+//		this.updatedBy = updatedBy;
+//	}
 	/**
 	 * @return the updatedDate
 	 */

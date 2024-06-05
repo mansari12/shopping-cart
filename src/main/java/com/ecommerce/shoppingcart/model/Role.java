@@ -16,14 +16,6 @@ import jakarta.persistence.Table;
 @Table(name = "ROLE")
 public class Role{
 	
-	
-//	roleId VARCHAR(50) PRIMARY KEY,
-//	roleName VARCHAR(50) UNIQUE,
-//	createdBy VARCHAR(50),
-//	createdDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-//	updatedBy VARCHAR(50),
-//	updatedDate TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
-	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ROLE_ID")

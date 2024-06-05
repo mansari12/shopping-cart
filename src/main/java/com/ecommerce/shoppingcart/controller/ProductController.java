@@ -16,7 +16,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 import com.ecommerce.shoppingcart.payload.request.ProductRequest;
 import com.ecommerce.shoppingcart.payload.response.ProductResponse;
-import com.ecommerce.shoppingcart.payload.response.RoleResponse;
 import com.ecommerce.shoppingcart.service.ProductService;
 
 /**

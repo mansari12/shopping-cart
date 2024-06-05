@@ -4,6 +4,7 @@
 package com.ecommerce.shoppingcart.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -12,6 +13,8 @@ import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.JoinColumn;
 import jakarta.persistence.ManyToOne;
+import jakarta.persistence.OneToMany;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 /**
@@ -19,10 +22,11 @@ import jakarta.persistence.Table;
  */
 @Entity
 @Table(name = "CUSTOMER")
+@SequenceGenerator(name="customer_id_seq", initialValue=11, allocationSize=100)
 public class Customer {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="customer_id_seq")
 	@Column(name = "CUSTOMER_ID")
 	private long customerId;
 	
@@ -35,9 +39,9 @@ public class Customer {
 	@Column(name = "PASSWORD")
 	private String password;
 	
-	@ManyToOne
-	@JoinColumn(name = "ROLE_ID")
-	private Role role;
+//	@ManyToOne
+//	@JoinColumn(name = "ROLE_ID")
+//	private Role role;
 	
 	@Column(name = "CREATED_BY")
 	private String createdBy;
@@ -50,6 +54,10 @@ public class Customer {
 	
 	@Column(name = "UPDATED_DATE")
 	private LocalDateTime updatedDate;
+	
+	
+	@OneToMany(mappedBy = "customer")
+	private List<Cart> cart;
 
 	/**
 	 * 
@@ -76,7 +84,7 @@ public class Customer {
 		this.customerName = customerName;
 		this.email = email;
 		this.password = password;
-		this.role = role;
+//		this.role = role;
 		this.createdBy = createdBy;
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
@@ -139,19 +147,19 @@ public class Customer {
 		this.password = password;
 	}
 
-	/**
-	 * @return the role
-	 */
-	public Role getRole() {
-		return role;
-	}
-
-	/**
-	 * @param role the role to set
-	 */
-	public void setRole(Role role) {
-		this.role = role;
-	}
+//	/**
+//	 * @return the role
+//	 */
+//	public Role getRole() {
+//		return role;
+//	}
+//
+//	/**
+//	 * @param role the role to set
+//	 */
+//	public void setRole(Role role) {
+//		this.role = role;
+//	}
 
 	/**
 	 * @return the createdBy
@@ -211,10 +219,13 @@ public class Customer {
 
 	@Override
 	public String toString() {
-		return "customer [customerId=" + customerId + ", customerName=" + customerName + ", email=" + email + ", password=" + password
-				+ ", role=" + role + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", updatedBy="
-				+ updatedBy + ", updatedDate=" + updatedDate + "]";
+		return "Customer [customerId=" + customerId + ", customerName=" + customerName + ", email=" + email
+				+ ", password=" + password + ", createdBy=" + createdBy + ", createdDate=" + createdDate
+				+ ", updatedBy=" + updatedBy + ", updatedDate=" + updatedDate + ", cart=" + cart + "]";
 	}
+
+	
+	
 	
 
 	

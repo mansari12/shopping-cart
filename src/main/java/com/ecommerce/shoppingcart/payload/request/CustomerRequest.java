@@ -11,7 +11,7 @@ public class CustomerRequest {
 	private String customerName;
 	private String email;
 	private String password;
-	private long roleId;
+//	private long roleId;
 	/**
 	 * @return the userName
 	 */
@@ -51,15 +51,15 @@ public class CustomerRequest {
 	/**
 	 * @return the roleId
 	 */
-	public long getRoleId() {
-		return roleId;
-	}
-	/**
-	 * @param roleId the roleId to set
-	 */
-	public void setRoleId(long roleId) {
-		this.roleId = roleId;
-	}
+//	public long getRoleId() {
+//		return roleId;
+//	}
+//	/**
+//	 * @param roleId the roleId to set
+//	 */
+//	public void setRoleId(long roleId) {
+//		this.roleId = roleId;
+//	}
 	
 	
 

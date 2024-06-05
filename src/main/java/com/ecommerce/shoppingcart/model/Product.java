@@ -4,12 +4,16 @@
 package com.ecommerce.shoppingcart.model;
 
 import java.time.LocalDateTime;
+import java.util.List;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
+import jakarta.persistence.SequenceGenerator;
 import jakarta.persistence.Table;
 
 /**
@@ -18,11 +22,12 @@ import jakarta.persistence.Table;
 
 @Entity
 @Table(name = "PRODUCT")
+@SequenceGenerator(name="product_id_seq", initialValue=21, allocationSize=100)
 public class Product {
 
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @GeneratedValue(strategy=GenerationType.SEQUENCE, generator="product_id_seq")
 	@Column(name = "PRODUCT_ID")
 	private long productId;
 	
@@ -47,6 +52,10 @@ public class Product {
 	@Column(name = "UPDATED_DATE")
 	private LocalDateTime updatedDate;
 	
+//	@ManyToOne
+//	@JoinColumn(name = "cartItemId")
+//	private CartItem cartItem;
+	
 	/**
 	 * 
 	 */
@@ -65,7 +74,7 @@ public class Product {
 	 * @param updatedDate
 	 */
 	public Product(long productId, String productName, double productPrice, double taxRate, String createdBy,
-			LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate) {
+			LocalDateTime createdDate, String updatedBy, LocalDateTime updatedDate, CartItem cartItem) {
 		super();
 		this.productId = productId;
 		this.productName = productName;
@@ -75,6 +84,7 @@ public class Product {
 		this.createdDate = createdDate;
 		this.updatedBy = updatedBy;
 		this.updatedDate = updatedDate;
+//		this.cartItem = cartItem;
 	}
 
 	/**
@@ -188,10 +198,26 @@ public class Product {
 	public void setUpdatedDate(LocalDateTime updatedDate) {
 		this.updatedDate = updatedDate;
 	}
+	
+	
+
+	/**
+	 * @return the cartItem
+	 */
+//	public CartItem getCartItem() {
+//		return cartItem;
+//	}
+//
+//	/**
+//	 * @param cartItem the cartItem to set
+//	 */
+//	public void setCartItem(CartItem cartItem) {
+//		this.cartItem = cartItem;
+//	}
 
 	@Override
 	public String toString() {
-		return "Product [productId=" + productId + ", productName=" + productName + ", productPrice=" + productPrice
+		return "Product [productId=" + productId + ",cartItem=" + ", productName=" + productName + ", productPrice=" + productPrice
 				+ ", taxRate=" + taxRate + ", createdBy=" + createdBy + ", createdDate=" + createdDate + ", updatedBy="
 				+ updatedBy + ", updatedDate=" + updatedDate + "]";
 	}

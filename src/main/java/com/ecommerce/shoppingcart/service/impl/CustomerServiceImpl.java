@@ -11,11 +11,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.ecommerce.shoppingcart.model.Customer;
-import com.ecommerce.shoppingcart.model.Role;
 import com.ecommerce.shoppingcart.payload.request.CustomerRequest;
 import com.ecommerce.shoppingcart.payload.response.CustomerResponse;
 import com.ecommerce.shoppingcart.repository.CustomerRepository;
-import com.ecommerce.shoppingcart.repository.RoleRepository;
 import com.ecommerce.shoppingcart.service.CustomerService;
 import com.ecommerce.shoppingcart.service.exception.CustomException;
 
@@ -28,19 +26,13 @@ public class CustomerServiceImpl implements CustomerService{
 	@Autowired
 	private CustomerRepository customerRepository;
 	
-	@Autowired
-	private RoleRepository roleRepository;
-
 	@Override
 	public CustomerResponse addCustomer(CustomerRequest customerRequest) {
-		Role role = roleRepository.findById(customerRequest.getRoleId())
-				.orElseThrow(() -> new CustomException ("Role not found"));
 		
 		Customer customer = new Customer();
 		customer.setCustomerName(customerRequest.getCustomerName());
 		customer.setEmail(customerRequest.getEmail());
 		customer.setPassword(customerRequest.getPassword());
-		customer.setRole(role);
 		customer.setCreatedBy("system");
 		customer.setCreatedDate(LocalDateTime.now());
 		customer.setUpdatedBy("system");
@@ -55,13 +47,10 @@ public class CustomerServiceImpl implements CustomerService{
 		Customer customer = customerRepository.findById(customerId)
 				.orElseThrow(() -> new CustomException ("customer not found"));
 		
-		Role role = roleRepository.findById(customerRequest.getRoleId())
-				.orElseThrow(() -> new CustomException ("Role not found"));
 		
 		customer.setCustomerName(customerRequest.getCustomerName());
 		customer.setEmail(customerRequest.getEmail());
 		customer.setPassword(customerRequest.getPassword());
-		customer.setRole(role);
 		customer.setUpdatedBy("system");
 		customer.setUpdatedDate(LocalDateTime.now());
 		customerRepository.save(customer);
@@ -98,7 +87,6 @@ public class CustomerServiceImpl implements CustomerService{
 		customerResponse.setCustomerId(customer.getCustomerId());
 		customerResponse.setCustomerName(customer.getCustomerName());
 		customerResponse.setEmail(customer.getEmail());
-		customerResponse.setRoleName(customer.getRole().getRoleName());
 		customerResponse.setCreatedBy(customer.getCreatedBy());
 		customerResponse.setCreatedDate(customer.getCreatedDate());
 		customerResponse.setUpdatedBy(customer.getUpdatedBy());

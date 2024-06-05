@@ -13,7 +13,7 @@ public class CartItemRequest {
 	private long cartId;
 	private long productId;
 	private int quantity;
-	private double cartItemsTotalPrice;
+//	private double cartItemsTotalPrice;
 	private String createdBy;
 	private LocalDateTime createdDate;
 	private String updatedBy;
@@ -57,15 +57,15 @@ public class CartItemRequest {
 	/**
 	 * @return the cartItemsTotalPrice
 	 */
-	public double getCartItemsTotalPrice() {
-		return cartItemsTotalPrice;
-	}
-	/**
-	 * @param cartItemsTotalPrice the cartItemsTotalPrice to set
-	 */
-	public void setCartItemsTotalPrice(double cartItemsTotalPrice) {
-		this.cartItemsTotalPrice = cartItemsTotalPrice;
-	}
+//	public double getCartItemsTotalPrice() {
+//		return cartItemsTotalPrice;
+//	}
+//	/**
+//	 * @param cartItemsTotalPrice the cartItemsTotalPrice to set
+//	 */
+//	public void setCartItemsTotalPrice(double cartItemsTotalPrice) {
+//		this.cartItemsTotalPrice = cartItemsTotalPrice;
+//	}
 	/**
 	 * @return the createdBy
 	 */
